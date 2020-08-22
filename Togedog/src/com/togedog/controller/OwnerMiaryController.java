@@ -64,7 +64,7 @@ public class OwnerMiaryController
 		return "/WEB-INF/views/ajax.jsp";
 	}
 
-	// 견주 마이어리 메인화면
+	// 견주 마이어리 메인화면 → 캘린더 일정 추가
 	@RequestMapping(value = "ownermiarymain.action", method = { RequestMethod.GET, RequestMethod.POST })
 	public String MiaryOwnerMainForm(Model model, HttpServletRequest request) throws SQLException
 	{
@@ -94,8 +94,6 @@ public class OwnerMiaryController
 		int notiCount = dao.notiCount(dto.getCode());
 		int noteCount = dao.noteCount(dto.getCode());
 
-		//System.out.println(dto.getGrade());
-		
 		model.addAttribute("nickName", userDao.getUserNickName(dto.getCode()));
 		model.addAttribute("ownInfo", userDTO);
 		model.addAttribute("sdList", sdList);
@@ -130,7 +128,6 @@ public class OwnerMiaryController
 		
 		
 	// 쪽지 리스트 ajax
-	// 페이징 처리하기..
 	@RequestMapping(value = "notelist.action", method = { RequestMethod.GET, RequestMethod.POST })
 	public String ownerMiaryNoteList(HttpServletRequest request) throws SQLException
 	{	
@@ -163,9 +160,6 @@ public class OwnerMiaryController
 		  IUserDAO userDAO = sqlSession.getMapper(IUserDAO.class);
 		  String userCd2 = userDAO.getUserCd(receiver);
 		  
-		  //System.out.println(receiver);
-		  //System.out.println(userCd2);
-		  
 		  // noteDTO 생성
 		  NoteDTO note = new NoteDTO();
 		  note.setUserCd(userCd);		// 보낸 사람
@@ -176,10 +170,6 @@ public class OwnerMiaryController
 		  IMiaryDAO miaryDAO = sqlSession.getMapper(IMiaryDAO.class);
 		  miaryDAO.sendNote(note);
 		
-		// 쪽지리스트 받아오기 
-		//List<NoteDTO> noteList = miaryDAO.getNoteList(userCd);
-		//request.setAttribute("noteList", noteList);
-		  
 		  return "WEB-INF/views/NoteList.jsp";
 	  }
 	  
@@ -187,25 +177,14 @@ public class OwnerMiaryController
 	@RequestMapping(value = "noteDelete.action", method = RequestMethod.GET)
 	public String deleteNote(HttpServletRequest request, String[] noteCdList) throws SQLException
 	{
-		// 회원코드
-		UserDTO dto = (UserDTO)request.getSession().getAttribute("user");
-		String userCd = dto.getCode();
-		//System.out.println("여기왔니");
-		
 		IMiaryDAO miaryDAO = sqlSession.getMapper(IMiaryDAO.class);
 		
 		for(int i=0; i<noteCdList.length; i++)
 		{	
 			String noteCd = noteCdList[i];
-			//System.out.println(noteCd);
-			
 			miaryDAO.deleteNote(noteCd);
 		}
 		
-		// 쪽지리스트 받아오기 
-		//List<NoteDTO> noteList = miaryDAO.getNoteList(userCd);
-		//request.setAttribute("noteList", noteList);
-		  
 		return "WEB-INF/views/NoteList.jsp";
 	}
 	
@@ -218,11 +197,7 @@ public class OwnerMiaryController
 		
 		IMiaryDAO dao = sqlSession.getMapper(IMiaryDAO.class);
 		
-		//System.out.println(noteCd);
-		
 		NoteDTO note = dao.getNote(noteCd);
-		
-		//System.out.println(note);
 		
 		request.setAttribute("article", note);
 		
@@ -230,8 +205,7 @@ public class OwnerMiaryController
 	}
 	
 	
-	
-	// 견주 마이어리 메인 탭 → 캘린더 일정 등록 0728 추가
+	// 견주 마이어리 메인 탭 → 캘린더 일정 등록 액션
 	@RequestMapping(value = "insertSch.action", method = { RequestMethod.GET, RequestMethod.POST })
 	public String insertSch(Model model, HttpServletRequest request) throws SQLException
 	{
@@ -249,10 +223,6 @@ public class OwnerMiaryController
 		String end = request.getParameter("end");
 		String startDate = date + " " + start + ":00";
 		String endDate = date + " " + end + ":00";
-
-		// System.out.println(startDate);
-		// --==>> 2020-07-31 03:06:00
-		// System.out.println(endDate);
 
 		// 세션에서 유저코드 얻어오기
 		HttpSession session = request.getSession();
@@ -398,16 +368,12 @@ public class OwnerMiaryController
 
 		String view = null;
 
-		// 산책매칭완료 탭을 클릭하면
-		// 회원코드를 받아오기
+		// 산책매칭완료 탭을 클릭하면 회원코드를 받아오기
 		String userCd = request.getParameter("userCd");
 
 		// 산책매칭정보 받아오기
-
 		IMiaryDAO dao = sqlSession.getMapper(IMiaryDAO.class);
 		List<MatchingDTO> matchingList = dao.getLastWalkInfo(userCd);
-
-		// System.out.println(userCd); 확인
 
 		request.setAttribute("userCd", userCd);
 		model.addAttribute("matchingList", matchingList);
@@ -465,27 +431,23 @@ public class OwnerMiaryController
 		
 		IMiaryDAO dao = sqlSession.getMapper(IMiaryDAO.class);
 		
-		// 상세정보 보기를 클릭하면
-		// 회원코드와 최종산책 코드를 받아오기
+		// 상세정보 보기를 클릭하면 회원코드와 최종산책 코드를 받아오기
 		String userCd = request.getParameter("userCd");
 		String walkLastCd = request.getParameter("walkLastCd");
 		
-		//System.out.println(userCd); 		//-- 확인  
-		//System.out.println(walkLastCd);	//-- 확인
-		 
-		// 견주 상세정보 얻어오기
+		// 상대견주 상세정보 얻어오기
 		List<MatchingDTO> ownList = dao.getWalkLastOwnDetail(userCd, walkLastCd);
 		
-		// 펫 상세정보 얻어오기
+		// 상대펫 상세정보 얻어오기
 		List<PetDTO> petList = dao.getWalkLastPetDetail(userCd, walkLastCd);
 		
-		// 장애 정보 얻어오기
+		// 상대펫 장애 정보 얻어오기
 		List<PetDTO> disaList = dao.getWalkLastDisaDetail(userCd, walkLastCd);
 		
-		// 알러지 정보 얻어오기
+		// 상대펫 알러지 정보 얻어오기
 		List<PetDTO> alleList = dao.getWalkLastAlleDetail(userCd, walkLastCd);
 		
-		// 이전 매칭 정보 얻어오기
+		// 상대견주 이전 매칭 정보 얻어오기
 		List<FeedbackDTO> fdbList = dao.getBeforeFdbInfo(userCd, walkLastCd);
 		
 		model.addAttribute("ownList",ownList);
@@ -620,7 +582,6 @@ public class OwnerMiaryController
 		 
 		return "redirect:/ownerworkermatching.action";
 	}
-	
 	
 	
 	// 견주 마이어리 매칭 탭 → 대행 신청 리스트 → 대행 상세정보

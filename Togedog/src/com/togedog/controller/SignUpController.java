@@ -6,17 +6,14 @@ import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.togedog.model.IPetDAO;
 import com.togedog.model.IUserDAO;
@@ -33,7 +30,7 @@ public class SignUpController
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 최초 회원가입 페이지 요청(견주, 워커 선택 페이지)
+	// 최초 회원가입 페이지 요청(견주가입, 워커가입 선택 페이지)
 	@RequestMapping(value = "/signupselect.action", method = RequestMethod.GET)
 	public String signUpSelect(Model model) throws SQLException
 	{
@@ -94,6 +91,8 @@ public class SignUpController
 	@RequestMapping(value = "/ownsignupform.action", method = RequestMethod.GET)
 	public String ownSignUpForm(HttpServletRequest request, Model model) throws SQLException
 	{
+		// 회원가입폼 구성 데이터 받아오기
+		
 		// 관심사 항목 리스트
 		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 		List<UserDTO> intrList = dao.getIntrList();
@@ -115,7 +114,7 @@ public class SignUpController
 	
 	// 신규견주 회원가입 액션 요청
 	@RequestMapping(value= "/ownsignup.action" , method = RequestMethod.POST)
-	public String ownSignUp(HttpServletRequest request, ModelMap model) throws SQLException, UnsupportedEncodingException
+	public String ownSignUp(HttpServletRequest request) throws SQLException, UnsupportedEncodingException
 	{
 		request.setCharacterEncoding("UTF-8");
 		
@@ -147,7 +146,7 @@ public class SignUpController
 		String photo = request.getParameter("photo");			// 사진
 		
 		
-		// 닉네임 null 이면 id 가 닉네임
+		// 닉네임 입력하지 않으면 id 가 닉네임
 		if(nickName.equals(""))
 		{
 			nickName = id;
@@ -184,8 +183,6 @@ public class SignUpController
 		String ownCd = dto.getResult(); //이런 방식으로 OUT 변수 받는 것 
 		
 		//5. 포인트 등록
-		
-		// 5-1. 추천인 포인트 등록
 		String recId = request.getParameter("recId"); // 추천인 아이디
 		
 		if(!recId.equals(""))// 추천인이 있으면 
@@ -203,10 +200,10 @@ public class SignUpController
 			dao.insertPoint(yourPoint);
 		}	
 		
-		// 회원가입 포인트는 프로시저로..
-
+		// 회원가입 포인트는 프로시저로 처리
 		
-		model.addAttribute("ownCd", ownCd);
+		// 강아지 등록할 때 사용하기 위해 견주 코드 저장
+		request.setAttribute("ownCd", ownCd);
 		
 		// 강아지 등록여부 선택 페이지 요청
 		return "WEB-INF/views/SignupSelect2.jsp"; 
@@ -215,23 +212,18 @@ public class SignUpController
 	
 	// 강아지 등록폼 요청
 	@RequestMapping(value="/addPetForm.action", method= RequestMethod.GET)
-	public String addPetInfo(HttpServletRequest request, Model model) throws SQLException
+	public String addPetInfo(HttpServletRequest request) throws SQLException
 	{
-		// 신규가입할때는 세션에 견주코드 값이 없으니까 직접 받아와야한다
-		String ownCd = request.getParameter("ownCd");
-		//System.out.println(ownCd);
-		
 		//예방접종 리스트  
 	    IPetDAO petDao = sqlSession.getMapper(IPetDAO.class);
 	    List<VacDTO> vacList  = petDao.getVacList();      
 	    
-	    model.addAttribute("vacList",vacList);
+	    request.setAttribute("vacList",vacList);
 	      
 	    // 견종리스트 
 	    List<PetDTO> dogItemList = petDao.getDogItemList();
-	    model.addAttribute("dogItemList",dogItemList);
+	    request.setAttribute("dogItemList",dogItemList);
 		
-		model.addAttribute("ownCd", ownCd);
 		
 		return "WEB-INF/views/PetAdd.jsp";
 	}
@@ -243,8 +235,7 @@ public class SignUpController
    {
 	   request.setCharacterEncoding("UTF-8");
 		
-	   
-	   // 1. 견주코드 받기(신규가입시 세션에 견주코드가 없으니 직접 받아오기)
+	   // 1. 견주코드 받기
 	  String ownCd = request.getParameter("ownCd");
 	   
       // 2. 강아지 등록하기
@@ -299,7 +290,7 @@ public class SignUpController
       }
       
      
-      //8. 예방접종 insert
+      //8. 예방접종 등록
       String[] vacList =  request.getParameterValues("vacList"); // 예방접종 코드들
       
       if(vacList != null)
@@ -317,7 +308,7 @@ public class SignUpController
       // 더 추가할 경우를 고려하여 견주 코드 담아서 보내기
       model.addAttribute("ownCd", ownCd);
       
-      // 강아지 더 추가할건지 묻는 페이지 요청하기(수정해야함)
+      // 강아지 더 추가할건지 묻는 페이지 요청하기
       return "WEB-INF/views/SignupSelect3.jsp";
    }
 	
@@ -341,7 +332,7 @@ public class SignUpController
 		return "WEB-INF/views/SignupOwn.jsp";
 	}
 	
-	// 추가 견주 등록 액션
+	// 추가 견주 등록 액션(워커→견주)
 	@RequestMapping(value = "/addown.action", method = { RequestMethod.POST, RequestMethod.GET})
 	public String addown(HttpServletRequest request, Model model) throws SQLException, UnsupportedEncodingException
 	{
@@ -390,7 +381,6 @@ public class SignUpController
 		
 		if(recId != "");// 추천인이 있으면 
 		{
-			//추천인 포인트 등록 dao 두번 실행 
 			// 내 견주코드 포인트코드 → 6점  
 			UserDTO myPoint = new UserDTO();
 			myPoint.setPointItemCd("PI9");
@@ -410,7 +400,6 @@ public class SignUpController
 		// 강아지 등록여부 선택 페이지 요청
 		return "WEB-INF/views/SignupSelect2.jsp";
 	}
-	
 	
 	
 	// 견주 완료 --------------------------------------------------------------------------
@@ -440,7 +429,7 @@ public class SignUpController
 		return "WEB-INF/views/SignupWorker.jsp";
 	}
 	
-	// 추가 워커신청 등록 액션
+	// 추가 워커신청 등록 액션(견주 → 워커)
 	@RequestMapping(value = "/addworker.action", method = RequestMethod.POST)
 	public String addWok(HttpServletRequest request)throws SQLException, UnsupportedEncodingException
 	{
@@ -448,7 +437,6 @@ public class SignUpController
 		
 		// 세션에서 회원 dto 얻기 
 		UserDTO userDto = (UserDTO)request.getSession().getAttribute("user");
-		//System.out.println(userDto.getCode());
 		
 		// 수신한 데이터 담기
 		String jobCd = request.getParameter("jobCd");		
@@ -476,8 +464,6 @@ public class SignUpController
 		// 워커코드 반환 
 		String wokCd = dto.getResult();
 		
-		//System.out.println(wokCd);
-		
 		// 자격증 등록 
 		String[] crtList = request.getParameterValues("crtList");
 		
@@ -495,13 +481,10 @@ public class SignUpController
 		
 		// 근무 요일 및  시간 등록
 		String[] days = request.getParameterValues("selDayCd");			// 근무가능 요일코드들
-		//System.out.println(days[0] + " / " + days[1]); 
 		
 		String[] favStart = request.getParameterValues("selFavStart");	// 시작 시간들
-		//System.out.println(favStart[0] + " / " + favStart[1]); 
 		
 		String[] favEnd = request.getParameterValues("selFavEnd");		// 끝 시간들
-		//System.out.print(favEnd[0] + " / " + favEnd[1]);
 		
 		for(int i=0; i<days.length; i++)
 		{
@@ -548,7 +531,7 @@ public class SignUpController
 		return "WEB-INF/views/SignupCommonWorker.jsp";
 	}
 	
-	// 워커 근무요일 및 시간 추가 시 뷰에 추가되도록..
+	// 워커 근무요일 및 시간 추가 시 뷰에 추가한다.
 	@RequestMapping(value = "/addWorkdays.action", method = RequestMethod.POST)
 	public String addWorkdays(HttpServletRequest request) throws SQLException
 	{
@@ -603,7 +586,7 @@ public class SignUpController
 		request.setCharacterEncoding("UTF-8");
 		
 		
-		// 1. 수신한 데이터 담기
+		// 수신한 데이터 담기
 		String id = request.getParameter("id");					// 아이디 
 		String addrCd = request.getParameter("addrSel3");		// 주소코드
 		String addrDetail = request.getParameter("addrDetail");	// 상세주소
@@ -628,7 +611,7 @@ public class SignUpController
 		String photo = request.getParameter("photo");			// 사진
 		
 		
-		// 2. dto 구성
+		// dto 구성
 		UserDTO dto = new UserDTO();
 
 		dto.setId(id);
@@ -659,9 +642,8 @@ public class SignUpController
 		
 		// 반환값(워커코드) 담기
 		String wokCd = dto.getResult();
-		//System.out.println(wokCd); 확인
 		
-		//2. 워커 자격증들 등록하기 (입력받은 자격증 배열 길이만큼 반복하게 해야함
+		// 워커 자격증들 등록하기 (입력받은 자격증 배열 길이만큼 반복하게 해야함
 
 		String[] crtList = request.getParameterValues("crtList");	// 자격증 코드들 받아오기
 		
@@ -675,20 +657,15 @@ public class SignUpController
 				// 자격증 등록
 				dao.crtAdd(crt);
 				
-				//System.out.println(crtCd); 확인
-				//System.out.println(wokCd); 확인
 			}
 		}
 		
-		//3. 워커 근무가능 요일과 시간들 등록하기 
+		// 워커 근무가능 요일과 시간들 등록하기 
 		String[] days = request.getParameterValues("selDayCd");			// 근무가능 요일코드들
-		//System.out.println(days[0] + " / " + days[1]); 
 		
 		String[] favStart = request.getParameterValues("selFavStart");	// 시작 시간들
-		//System.out.println(favStart[0] + " / " + favStart[1]); 
 		
 		String[] favEnd = request.getParameterValues("selFavEnd");		// 끝 시간들
-		//System.out.print(favEnd[0] + " / " + favEnd[1]);
 		
 		for(int i=0; i<days.length; i++)
 		{
@@ -707,7 +684,7 @@ public class SignUpController
 	}
 	
 	
-	// 회원가입폼 주소(시군구) ajax 처리 0725 추가 
+	// 회원가입폼 주소(시군구) ajax 처리
 	@RequestMapping(value="/getsgglist.action", method = RequestMethod.GET)
 	public String getSggList(HttpServletRequest request,  Model model) throws SQLException
 	{
@@ -723,7 +700,7 @@ public class SignUpController
 		return "WEB-INF/views/ajaxAddrSgg.jsp";
 	}
 	
-	// 회원가입폼 주소(동읍면) ajax 처리 0725 추가
+	// 회원가입폼 주소(동읍면) ajax 처리 
 	@RequestMapping(value="/getdemlist.action", method = RequestMethod.GET )
 	public String getDemList(HttpServletRequest request,  Model model) throws SQLException
 	{

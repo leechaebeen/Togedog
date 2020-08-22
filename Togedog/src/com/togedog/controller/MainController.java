@@ -266,7 +266,7 @@ public class MainController
 		return view;
 	}
 	
-	// 메인정보 수정 폼 요청(0810 추가)
+	// 메인정보 수정 폼 요청
 	@RequestMapping(value="/mainmyinfo.action", method= {RequestMethod.GET, RequestMethod.POST })
 	public String getMainMyInfo(HttpServletRequest request, Model model) throws SQLException
 	{
@@ -282,7 +282,7 @@ public class MainController
 		UserDTO user = dao.getOwnInfo(userCd);
 		request.setAttribute("user", user);
 		
-		//3. 주소 리스트
+		//3. 데이터 리스트
 		List<UserDTO> sdList = dao.getSdList();
 		model.addAttribute("sdList", sdList);
 		
@@ -297,11 +297,10 @@ public class MainController
 		List<UserDTO> bankList = dao.getBankList();
 		model.addAttribute("bankList", bankList);
 		
-		//4. jsp 에서 뿌려주깅 
 		return "WEB-INF/views/MainInfo.jsp";
 	}
 	
-	// 메인정보 수정 액션처리(0810 추가)
+	// 메인정보 수정 액션처리
 	@RequestMapping(value ="/updatemainmyinfo.action", method=RequestMethod.POST)
 	public String updateMainMyInfo(HttpServletRequest request) throws SQLException, UnsupportedEncodingException
 	{
@@ -349,7 +348,6 @@ public class MainController
 		IMainDAO dao = sqlSession.getMapper(IMainDAO.class);
 		
 		
-		/*
 		String pwd = dao.pwCheck(beforePwd);
 		
 		System.out.println(pwd);
@@ -360,9 +358,6 @@ public class MainController
 		{
 			result = "correct";
 		}
-		*/
-		
-		String result = "correct";
 		
 		request.setAttribute("result", result);
 		

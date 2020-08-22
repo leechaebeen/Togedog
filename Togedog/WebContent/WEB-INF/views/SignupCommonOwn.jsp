@@ -137,7 +137,6 @@
 		$("#joinBtn").click(
 		function()
 		{
-			
 			// 이용약관 동의 유효성 검사 
 		    if($("#serviceCheck").prop('checked') == false || $("#personalInfoCheck").prop('checked') == false)
 		    {
@@ -158,6 +157,7 @@
                 || $("#tel").val() == ""
                 || $("#gender").val() == ""
 	    		|| $("#intr").val() == ""
+	    		|| $("#intrDetail").val() == ""
 	      		|| $("#favStart").val() == ""
 	      		|| $("#favEnd").val() == ""
 	      		|| $("input[name=day]").val() == ""
@@ -186,7 +186,6 @@
 
     	    if(pwd.length < 10 || pwd.length > 20)
     	    {
-    	       //alert("10자리 ~ 20자리 이내로 입력해주세요.");
     	       $("#err").html("패스워드는 10자리 ~ 20자리 이내로 입력해주세요.");
     	       $("#err").css("display", "inline");
     	    
@@ -194,7 +193,6 @@
     	    }
     	    else if(pwd.search(/\s/) != -1)
     	    {
-    	       //alert("비밀번호는 공백 없이 입력해주세요.");
     	       $("#err").html("패스워드는 공백 없이 입력해주세요.");
     	       $("#err").css("display", "inline");
     	       
@@ -202,7 +200,6 @@
     	    }
     	    else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) )
     	    {
-    	       //alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
     	       $("#err").html("패스워드는 영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
     	       $("#err").css("display", "inline");
 
@@ -227,7 +224,6 @@
     	    	return;
     	   }	
 			
-		    
 		   // 닉네임 중복확인 했는지 검사
 		   if( $("#nickName").val()!="" && nickFlag == 0 )
 		   {
@@ -271,10 +267,11 @@
 		
 		
 		// 선호산책시간 변경시 유효성 검사
+		
+		// 시작시간 변경 시 
 		$("#favStart").change(function()
 		{
-			alert("시작시간 변경!"+ $("#favStart").val() + $("#favEnd").val());
-			
+			// 시작시간이 끝시간보다 미래이거나 같으면 안된다.
 			if($("#favStart").val() >= $("#favEnd").val())
 			{
 				$("#timeErr").html("시간을 확인해주세요.");
@@ -286,9 +283,11 @@
 			}
 		});
 		
+		// 끝시간 변경 시 
 		$("#favEnd").change(function()
 		{
-			if($("#favStart").val() >= $("#favEnd").val())
+			// 끝시간이 시작시간보다 과거이거나 같으면 안된다.
+			if($( $("#favEnd").val() <= "#favStart").val())
 			{
 				$("#timeErr").html("시간을 확인해주세요.");
 		    	$("#timeErr").css("display","inline");
@@ -332,14 +331,8 @@
 						
 						idFlag = 1;
 					}
-				},
-				/* 에러 확인용 */
-				error : function(request, status, error)
-				{
-					alert("code:" + request.status + "\n"
-							+ "message:" + request.responseText
-							+ "\n" + "error:" + error);
 				}
+				
 			})
 
 		}); /* end 아이디 중복체크 */
@@ -392,10 +385,6 @@
 		    ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
 		    ,changeYear: true //콤보박스에서 년 선택 가능
 		    ,changeMonth: true //콤보박스에서 월 선택 가능                
-		    //,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-		    //,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-		    //,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-		    //,buttonText: "생년월일" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
 		    ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
 		    ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
 		    ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
@@ -403,31 +392,32 @@
 		    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
 		    ,minDate: "-100Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 		    ,maxDate: "+0D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)    
-			, yearRange: 'c-100:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
+			, yearRange: 'c-100:c+0' // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
 		});                    
 
-		//초기값을 오늘 날짜로 설정
+		// 데이트피커 초기값을 오늘 날짜로 설정
 		$('.datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
 
-
 		// 사진 미리보기
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        reader.onload = function(e) {
+		function readURL(input) 
+		{
+		   if (input.files && input.files[0]) 
+		   {
+			   var reader = new FileReader();
+		       reader.onload = function(e) 
+		       {
 		            $('#preview').attr('src', e.target.result);
-		        }
-		        reader.readAsDataURL(input.files[0]);
-		    
+		       }
+		       reader.readAsDataURL(input.files[0]);
 		    }
 		}
-		 
+				 
 		$("#photo").change(function() {
 		    readURL(this);
 		});
 
 
-		// 전화번호 입력하고 본인인증 버튼 클릭하면 ajax로 전화번호 전송
+		// 전화번호 입력하고 본인인증 버튼 클릭하면 ajax로 검증받을 전화번호 전송
 		$("#certBtn").click(function()
 		{
 			if( $("#certTel").val()=="" )
@@ -458,11 +448,9 @@
 						alert("인증번호가 발송되었습니다.");
 					}
 					
-					$("#certNumBtn").click(function() // 인증번호 확인 버튼 클릭 시 
+					// 인증번호 확인 버튼 클릭 시 
+					$("#certNumBtn").click(function() 
 					{	
-						//alert("인증번호 확인 버튼 클릭!");
-						//alert(data);  
-						
 						if( $.trim($("#certNum").val())=="" )
 						{
 							alert("인증번호를 입력해주세요.");
@@ -470,7 +458,8 @@
 							return;
 						
 						}
-						else if( $.trim(data) == $.trim($("#certNum").val()) ) // 인증번호와 입력받은 번호가 같다면
+						// 인증번호와 입력받은 번호가 같다면
+						else if( $.trim(data) == $.trim($("#certNum").val()) ) 
 						{
 							alert("본인인증에 성공하였습니다.");
 							certFlag = 1;
@@ -509,14 +498,11 @@
 			}
 		});
 		
-		 // 시도 변경 시 
+		 // 시도 변경 시 해당하는 시군구 가져오기
 		$("#addrSel1").change( function()
 		{
-			// alert("시 도 변경"); -- 테스트
-			
 			var addrSel1 = $("#addrSel1").val();
 			
-			//alert(addrSel1);  -- 테스트
 			$.ajax(
 			{
 				type : 'GET',
@@ -534,14 +520,11 @@
 			
 		});	
 		 
-		// 시군구 변경시
+		// 시군구 변경시 해당하는 동읍면 가져오기
 		$("#addrSel2").change(function()
 		{
-			// alert("시 도 변경"); -- 테스트
-			
 			var addrSel2 = $("#addrSel2").val();
 			
-			//alert(addrSel2);  -- 테스트
 			$.ajax(
 			{
 				type : 'GET',
@@ -560,7 +543,7 @@
 		});	// end change
 		
 		
-		//추천인 확인 클릭 시 
+		//추천인 확인 클릭 시 존재하는 회원인지 확인
 		$("#recCheck").click(function()
 		{
 			if (!$("#recId").val())
@@ -627,7 +610,7 @@
 		
 		
  		
-		<div id="signupStepsOwner" class="container" style="margin-left: 20%;">
+		<div id="signupStepsOwner" class="container" style="margin-left: 17%;">
 			
 			<div class="row txt">
 				<div class="col-sm-1" style="line-height: 35px;"></div>
@@ -643,17 +626,6 @@
 							<option value="${intr.intrCd }">${intr.intr }</option>
 						</c:forEach>
 					</select>
-
-					<!-- <select class="form-control" id="intr" name="intr"
-						style="font-size: small; width: 150px; height: 28px;"
-						required="required">
-						<option value="1">관심사 선택</option>
-						<option value="2">음악</option>
-						<option value="3">영화</option>
-						<option value="4">관광</option>
-						<option value="5">언어</option>
-						<option value="6">쇼핑</option>
-					</select> -->
 				</div>
 				<br>
 
@@ -664,6 +636,8 @@
 				<div class="col-sm-1" style="line-height: 30px;"></div>
 				<div class="col-sm-2" style="line-height: 30px; text-align: left;">
 					<span style="color: #828282; font-size: 15px;">상세 관심사</span>
+					<span style="color: #828282; font-size: 15px;">관심사</span> <span
+						style="color: #75C3F8; font-size: 13px; font-weight: bold;">(필수)</span>
 				</div>
 				<div class="txt col-sm-3" style="line-height: 30px;">
 					<input type="text" class="form-control" id="intrDetail"
@@ -688,6 +662,7 @@
 				</div>
 			</div>
 
+			<!-- 선호 산책요일 -->
 			<div class="row txt">
 				<div class="col-sm-1" style="line-height: 30px;"></div>
 				<div class="col-sm-2" style="line-height: 30px; text-align: left;">
@@ -747,12 +722,7 @@
 								<option value="${i }">${i }:00</option>
 							</c:forEach>
 					</select>
-					
-				<!-- 	<input type="text" id="favStart" name="favStart" class="timepicker form-control col-sm-3"
-					 style="line-height: 30px; margin-top: 5px; required="required">
-			 		
-					<input type="text" id="favEnd" name="favEnd" class="timepicker form-control col-sm-3"
-			 		 style="line-height: 30px; margin-top: 5px; margin-left: 5px; required="required"> -->
+			
 					<div class="col-sm-4" id="timeErr" style="color: #F25C69; width: 200px;"></div><br>
 				</div>
 				
@@ -766,7 +736,7 @@
 					<span style="color: #828282; font-size: 15px;">환불 계좌 정보</span>
 				</div>
 				
-				
+				<!-- 은행리스트 -->
 				<div class="txt col-sm-1" style="line-height: 28px; padding:0; ">
 					<select class="form-control" name="bankCd"
 						style="font-size: small; width: 80px; height: 30px; padding:0; margin:0 0 0 15px;">
@@ -774,15 +744,10 @@
 							<option value="${bank.bankCd }">${bank.bank }</option>
 						</c:forEach>
 					</select>
-
-					<!-- <select class="form-control" name="bank"
-						style="font-size: small; width: 120px; height: 30px;">
-						<option value="1">입금은행</option>
-						<option value="2">국민은행</option>
-						<option value="3">기업은행</option>
-						<option value="4">우리은행</option>
-					</select> -->
+					
 				</div>
+				
+				<!-- 계좌번호 입력 -->
 				<div class="txt col-sm-7" style="margin-right: 8%; padding: 0;">
 					<input type="text" class="form-control pull-left" id="accNum" name="accNum"
 						style="width: 200px; height: 30px;" placeholder="-없이 계좌번호 입력"
