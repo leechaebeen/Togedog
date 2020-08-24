@@ -691,6 +691,7 @@ public class OwnerMiaryController
 	}
 	
 	// 기록 게시글 보기
+	// 페이징처리하기 
 	@RequestMapping(value = "recarticle.action", method = { RequestMethod.GET, RequestMethod.POST })
 	public String recArticle(Model model, HttpServletRequest request) throws SQLException
 	{
@@ -707,18 +708,19 @@ public class OwnerMiaryController
 	}
 	
 	// 기록 작성 폼
-	@RequestMapping(value = "walkrecwrite.action", method = { RequestMethod.GET, RequestMethod.POST })
-	public String WalkRecInsertForm(HttpServletRequest request, Model model) throws SQLException
+	@RequestMapping(value="recordwriteform.action", method = RequestMethod.GET)
+	public String WalkRecInsertForm(HttpServletRequest request) throws SQLException
 	{
 		IMiaryDAO dao = sqlSession.getMapper(IMiaryDAO.class);
 		IMatchingDAO matDao = sqlSession.getMapper(IMatchingDAO.class);
 		UserDTO dto = (UserDTO)request.getSession().getAttribute("user");
 
-		model.addAttribute("schList", dao.getSchItem());
-		model.addAttribute("pet_list", matDao.walkPetSel(dto.getCode()));
+		request.setAttribute("schList", dao.getSchItem());
+		request.setAttribute("pet_list", matDao.walkPetSel(dto.getCode()));
 	      
-		String view = "/WEB-INF/views/RecordInsert.jsp";
-		return view;
+		System.out.println("여기왔니?");
+		
+		return "/WEB-INF/views/InsertRecord.jsp";
 	}
 	
 	// 기록 수정

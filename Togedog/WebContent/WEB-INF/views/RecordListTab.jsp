@@ -135,7 +135,15 @@
 				location.href="<%=cp%>/workermiarymain.action";
 			}
 			
+		});// click end
+		
+		
+		$("#createBtn").on("click", function()
+		{
+			alert("버튼클릭");
+			location.href="<%=cp%>/recordwriteform.action";
 		});
+		
 	});
 
 </script>
@@ -229,7 +237,7 @@
 								</tbody>
 							</table>
 
-							<button class="btn btn-xs pull-left" onclick="location.href='RecordInsert.jsp'">글쓰기</button>
+							<button class="btn btn-xs pull-left" id="createBtn">글쓰기</button>
 						</div>
 						<!-- 페이지 -->
 						<nav class="pagination-sm">

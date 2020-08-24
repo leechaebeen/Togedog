@@ -711,7 +711,7 @@
 	<!-- 일정등록 -->
 	<insert id="insertSch" parameterType="com.togedog.vo.ScheduleDTO">
 		INSERT INTO TBL_SCH(SCH_CD, OWN_CD, SCH_ITEM_CD, WEATHER_CD, ADDR_D_E_M_CD, ADDR_DETAIL, START_DATE, END_DATE, USER_CD, TITLE)
-		VALUES ('SCH'||SEQ_SCH.NEXTVAL, FUNC_GET_OWNER_CD(#{userCd}), #{schCd} , #{weatherCd}, #{addrSel3Cd}, #{address} , TO_DATE(#{startDate} ,'yyyy-mm-dd hh24:mi:ss'), TO_DATE(#{endDate} ,'yyyy-mm-dd hh24:mi:ss'), #{userCd}, #{title} )
+		VALUES ('SCH'||SEQ_SCH.NEXTVAL, FUNC_GET_OWN_CD(#{userCd}), #{schCd} , #{weatherCd}, #{addrSel3Cd}, #{address} , TO_DATE(#{startDate} ,'yyyy-mm-dd hh24:mi:ss'), TO_DATE(#{endDate} ,'yyyy-mm-dd hh24:mi:ss'), #{userCd}, #{title} )
 	</insert> 
 	
 	<!-- 기록 항목 -->
