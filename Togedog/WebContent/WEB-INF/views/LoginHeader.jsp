@@ -35,7 +35,7 @@ body
 
 <div id="main-header" style="background-color: #DAF5FD; text-align: center;">
    <!-- <img src="images/HeaderLogo.png" alt="LOGO"> -->
-   <img src="images/TogedogLogo.png" alt="LOGO">
+   <img src="images/togedog.png" alt="LOGO"  style=" height: 150px;">
    <br><br><br><br><br>
 </div>
 
