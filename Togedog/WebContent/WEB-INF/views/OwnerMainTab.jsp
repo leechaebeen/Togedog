@@ -9,9 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Togedog</title>
+
 <!-- 파비콘 적용 -->
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.png">
+<link rel="icon" href="images/favicon.png">
 
 <!-- <link rel="stylesheet" type="text/css" href="css/MiaryStyle.css"> -->
 <link rel="stylesheet" type="text/css" href="css/MiaryTemplate.css">
@@ -78,7 +79,7 @@
 	{	
 		width :100%;
 		margin : 0px 0px 0px 0px;
-		padding: 0px 0px 0px -10px;
+		padding: 0px 0px 0px  0px /* -10px */;
 		border-radius: 0px 0px 0px 0px;
 		background-color: #75c3f8;
 	}
@@ -203,7 +204,7 @@
 	<div class="container col-md-12">
 
 		<!-- 견주/워커 탭과 content 와 nav-bar 를 감싸는 content-wrap -->
-		<div class="content-wrap col-md-12">
+		<div class="content-wrap col-md-12" >
 
 			<!-- 견주/워커 탭 -->
 			<div class="tabbable" id="tabs-460097">
