@@ -718,9 +718,9 @@ public class OwnerMiaryController
 		request.setAttribute("schList", dao.getSchItem());
 		request.setAttribute("pet_list", matDao.walkPetSel(dto.getCode()));
 	      
-		System.out.println("여기왔니?");
+		//System.out.println("여기왔니?");
 		
-		return "/WEB-INF/views/InsertRecord.jsp";
+		return "/WEB-INF/views/RecordInsert.jsp";
 	}
 	
 	// 기록 수정

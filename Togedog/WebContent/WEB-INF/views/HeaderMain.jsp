@@ -95,7 +95,8 @@
 			| <a href="#">정보수정</a> | <a href="<%=cp%>/mainmenuform.action">${sessionScope.user.getUserType()} 메인으로</a>
 		</c:if>
 	</div>
-	<img src="images/HeaderLogo.png" alt="LOGO" style="margin-top: 45px;">
+	<!-- <img src="images/HeaderLogo.png" alt="LOGO" style="margin-top: 45px;"> -->
+	<img src="images/TogedogLogo.png" alt="LOGO" style="margin-top: 45px;">
 	<div style="margin: 5px;">
 		<span style="font-size: 14px;">반려견 산책부터 관리까지 투게도그와 함께해요!</span>
 	</div>

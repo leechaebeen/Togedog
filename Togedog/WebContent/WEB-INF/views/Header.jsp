@@ -72,5 +72,5 @@ body {
    <div id="headerBtn" class="col-md-12 col-sm-12 col-12">
 		  <div style="text-align: right; margin-right: 5%;"><a id="logout">로그아웃</a> &nbsp; <a href="<%=cp %>/mainmenuform.action">메인화면 가기</a></div>
 	</div>
-	<img src="images/MiaryHeaderLogo.png" alt="LOGO">
+	<img src="images/TogedogLogo.png" alt="LOGO">
 </div>

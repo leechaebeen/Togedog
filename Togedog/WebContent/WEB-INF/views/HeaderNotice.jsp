@@ -66,7 +66,8 @@
 <body>
 
 <div id="header" class="container col-md-12 col-sm-12 col-12" style="background-color: #DAF5FD; text-align: center; margin-bottom: 5%;">
-   <img src="images/HeaderLogo.png" alt="LOGO" style="margin-top: 45px;">
+   <!-- <img src="images/HeaderLogo.png" alt="LOGO" style="margin-top: 45px;"> -->
+   <img src="images/TogedogLogo.png" alt="LOGO" style="margin-top: 45px;"> 
    <br><span style="font-size: 14px; margin-bottom: 10%;">반려견 산책부터 관리까지 투게도그와 함께해요!</span>
    <div id="headerBtn" class="col-md-12 col-sm-12 col-12" style="margin-top: 20px; margin-bottom: 20px;">
       <button type="button" class="btn" id="logout" onclick="sendLogout()">Logout</button>

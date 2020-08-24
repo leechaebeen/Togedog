@@ -89,7 +89,9 @@
 		
 	
 	</div>	
-	<a href="<%=cp%>/firstmain.action"><img src="images/HeaderLogo.png" alt="LOGO"></a>
+	<a href="<%=cp%>/firstmain.action"><!-- <img src="images/HeaderLogo.png" alt="LOGO"> -->
+	<img src="images/TogedogLogo.png" alt="LOGO"> 
+	</a>
 </div>
 
 </body>
