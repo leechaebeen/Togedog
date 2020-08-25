@@ -28,7 +28,7 @@
 		if(request.getServletPath().contains("Owner"))
 		{
 		%>
-			<button type="button" id="addSch">일정 추가</button>
+			<button type="button" id="addSch" class="btn btn-xs">일정 추가</button>
 		<%
 		}
 		%>

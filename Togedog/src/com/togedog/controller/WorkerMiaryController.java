@@ -117,7 +117,7 @@ public class WorkerMiaryController
 		UserDTO workerDTO = userDAO.getWokInfo(userCd);
 		String wokAddrCd1 = workerDTO.getAddrCd1();	
 		
-
+		// 해당하는 매칭 건들을 담을 자료구조 선언
 		List<MatchingDTO> matchingList = new ArrayList<MatchingDTO>();
 		
 		MyUtil myUtil = new MyUtil();

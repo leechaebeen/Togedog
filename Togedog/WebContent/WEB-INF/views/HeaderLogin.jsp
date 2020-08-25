@@ -10,7 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Togedog</title>
-
+<!-- 파비콘 적용 -->
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" href="images/favicon.png">
 <style type="text/css">
 	body 
 	{

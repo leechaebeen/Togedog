@@ -17,7 +17,7 @@
 
 <!-- 파비콘 적용 -->
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.png">
+<link rel="icon" href="images/favicon.png">
 
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="css/bootstrap.min.css">

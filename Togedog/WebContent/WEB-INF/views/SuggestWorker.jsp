@@ -12,8 +12,7 @@
 
 <!-- 파비콘 적용 -->
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.png">
-
+<link rel="icon" href="images/favicon.png">
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">

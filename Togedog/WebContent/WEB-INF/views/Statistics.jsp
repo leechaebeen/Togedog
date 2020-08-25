@@ -10,10 +10,10 @@
 <meta charset="UTF-8">
 <title>Togedog</title>
 
+
 <!-- 파비콘 적용 -->
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.png">
-
+<link rel="icon" href="images/favicon.png">
 <!-- css 파일 적용 -->
 <link rel="stylesheet" type="text/css" href="css/MiaryTemplate.css">
 <link rel="stylesheet" type="text/css" href="css/Modal.css">

@@ -12,7 +12,7 @@
 
 <!-- 파비콘 적용 -->
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.png">
+<link rel="icon" href="images/favicon.png">
 
 <!-- 제이쿼리 적용 -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

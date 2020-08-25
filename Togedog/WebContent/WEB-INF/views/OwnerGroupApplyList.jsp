@@ -11,7 +11,7 @@
 <title>Togedog</title>
 <!-- 파비콘 적용 -->
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.png">
+<link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="css/MiaryTemplate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -116,7 +116,7 @@ th, td
 							
 							<!-- 그룹생성/그룹가입 버튼 -->
 							<div style="margin:20px 0px 0px 0px;">
-								<span class="txt" style="margin-right: 45%; margin-left: 0.1%;">(발바닥)그룹리스트</span>	
+								<span class="txt" style="margin-right: 45%; margin-left: 0.1%;"><img src="images/FOOT.png" alt="🐾" style="width: 30px; margin-right: 10px;" >그룹리스트</span>	
 								<span style="margin-right: 15px;"> n개의 그룹에 더 가입할 수 있어요! </span>
 								<button type="button" class="btn btn-default btn-xs">그룹 생성</button>
 								<button type="button" class="btn btn-default btn-xs">그룹 가입</button>

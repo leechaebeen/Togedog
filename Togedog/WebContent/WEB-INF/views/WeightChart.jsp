@@ -5,6 +5,11 @@
   <meta charset="utf-8">
   <title>Togedog</title>
   <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  
+<!-- 파비콘 적용 -->
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" href="images/favicon.png">
+
   <style>
     .zc-body {
       background: #fff;

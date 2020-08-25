@@ -13,7 +13,7 @@
 
 <!-- 파비콘 적용 -->
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.png">
+<link rel="icon" href="images/favicon.png">
 <!-- 제이쿼리 -->
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <!-- 부트스트랩 -->
