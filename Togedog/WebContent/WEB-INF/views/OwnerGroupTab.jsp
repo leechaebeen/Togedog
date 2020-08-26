@@ -191,12 +191,12 @@ th, td
 				<!-- 탭들 감싸는 nav-bar -->
 				<div class="nav-bar col-md-1"  style="margin-top: 15px; padding-left: 0px;">
 					<ul class="nav flex-column" >
-						<li class="nav-item"><a class="nav-link active" href="#">메인</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">매 칭</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">기 록</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">그 룹</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">통 계</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">정 보</a></li>
+						<li class="nav-item"><a class="nav-link" href="<%=cp %>/ownermiarymain.action">메 인</a></li>
+						<li class="nav-item" style="background-color: #FFFFFF;"><a class="nav-link active" href="<%=cp %>/ownerwalkmatching.action">매 칭</a></li>
+						<li class="nav-item"><a class="nav-link" href="<%=cp %>/ownerrecordlisttab.action">기 록</a></li>
+						<li class="nav-item"><a class="nav-link" href="<%=cp %>/ownergrouptab.action">그 룹</a></li>
+						<li class="nav-item"><a class="nav-link" href="<%=cp %>/ownerstatisticstab.action">통 계</a></li>
+						<li class="nav-item"><a class="nav-link" href="<%=cp %>/ownerfriendlist.action">정 보</a></li>
 					</ul>
 				</div><!--  end nav_bar -->
 			</div>
