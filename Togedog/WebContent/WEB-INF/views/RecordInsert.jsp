@@ -167,16 +167,16 @@ th, td {
 		$("#acc > tbody").append(
 		"<tr>"
 		+ "<td style='width: 25%'>"
-		+	"<select class='form-control'>"
+		+	"<select class='form-control' id='accItem' name='accItem'>"
 		+		"<option>지출</option>"
 		+		"<option>수입</option>"
 		+	"</select>"
 		+ "</td>"
 		+ "<td style='width: 50%'>"
-		+		"<input type='text' class='form-control' name='moneyContent' />"
+		+		"<input type='text' class='form-control' id='accContent' name='accContent' />"
 		+ "</td>"
 		+ "<td style='width: 25%'>"
-		+		"<input type='text' class='form-control' name='price' placeholder='금액'>"
+		+		"<input type='text' class='form-control' id='accPrice' name='accPrice' placeholder='금액'>"
 		+ "</td>"
 		+ "</tr>");
 	};
@@ -270,7 +270,7 @@ th, td {
 										</td>
 										<td colspan="3">
 											<div class="col-md-12">
-												<input type="text" class="form-control" name="subject">
+												<input type="text" class="form-control" id="title" name="title">
 											</div>
 										</td>
 									</tr>
@@ -307,7 +307,7 @@ th, td {
 										</td>
 										<td colspan="3">
 											<div class="col-md-12">
-												<select class="form-control">
+												<select class="form-control" id="weather" name="weather">
 													<option>맑음</option>
 													<option>조금흐림</option>
 													<option>흐림</option>
@@ -334,26 +334,27 @@ th, td {
 										<td>
 											<div class="col-md-12">
 												<input type="text" class="form-control" data-toggle="modal"
-													data-target="#place">
+													data-target="#place" id="place" name="place">
 											</div>
 										</td>
-										<td>
+										<!-- <td>
 											<div class="col-md-12">산책 거리</div>
 										</td>
 										<td>
 											<div class="col-md-12">
-												<input type="text" class="form-control" readonly>
+												<input type="text" class="form-control" readonly="readonly" name=>
 											</div>
-										</td>
+										</td> -->
 									</tr>
 									<tr class="but">
 										<td>
 											<div class="col-md-12">미용 장소</div>
 										</td>
 										<td>
+											<!-- 값이 있는 name 속성만 넘어가도록 -->
 											<div class="col-md-12">
 												<input type="text" class="form-control" data-toggle="modal"
-													data-target="#place">
+													data-target="#place" name="place" id="place">
 											</div>
 										</td>
 										<td>
@@ -361,7 +362,7 @@ th, td {
 										</td>
 										<td>
 											<div class="col-md-12">
-												<select class="form-control">
+												<select class="form-control" id="item" name="item">
 													<option>미용</option>
 													<option>목욕</option>
 													<option>발톱깎기</option>
@@ -376,7 +377,7 @@ th, td {
 										<td>
 											<div class="col-md-12">
 												<input type="text" class="form-control" data-toggle="modal"
-													data-target="#place">
+													data-target="#place" id="place" name="place">
 											</div>
 										</td>
 										<td>
@@ -384,7 +385,7 @@ th, td {
 										</td>
 										<td>
 											<div class="col-md-12">
-												<select class="form-control">
+												<select class="form-control" id="item" name="item">
 													<option>종합백신</option>
 													<option>코로나백신</option>
 													<option>켄넬노프</option>
@@ -398,7 +399,7 @@ th, td {
 											<div class="col-md-12">몸무게</div>
 										</td>
 										<td><input type="text" class="form-control"
-											data-toggle="modal" data-target="#place"></td>
+											data-toggle="modal" data-target="#place" id="weight" name="weight"></td>
 										<td></td>
 										<td></td>
 									</tr>
@@ -409,7 +410,7 @@ th, td {
 										<td>
 											<div class="col-md-12">
 												<input type="text" class="form-control" data-toggle="modal"
-													data-target="#place">
+													data-target="#place" id="place" name="place">
 											</div>
 										</td>
 										<td>
@@ -417,7 +418,7 @@ th, td {
 										</td>
 										<td>
 											<div class="col-md-12">
-												<select class="form-control">
+												<select class="form-control" name="item" id="item">
 													<option>기초훈련</option>
 													<option>배변훈련</option>
 													<option>손훈련</option>
@@ -433,7 +434,7 @@ th, td {
 										<td>
 											<div class="col-md-12">
 												<input type="text" class="form-control" data-toggle="modal"
-													data-target="#place">
+													data-target="#place" name="place" id="place">
 											</div>
 										</td>
 										<td>
@@ -441,7 +442,7 @@ th, td {
 										</td>
 										<td>
 											<div class="col-md-12">
-												<select class="form-control">
+												<select class="form-control" id="item" name="item">
 													<option>사료</option>
 													<option>가구</option>
 													<option>장난감</option>
@@ -466,7 +467,7 @@ th, td {
 										</td>
 										<td colspan="3">
 											<div class="col-md-12">
-												<textarea rows="10" cols="50" name="content"
+												<textarea rows="10" cols="50" id="content" name="content"
 													class="form-control" style="resize: none;"></textarea>
 											</div>
 										</td>
