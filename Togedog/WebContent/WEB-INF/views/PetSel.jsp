@@ -44,13 +44,13 @@
 </style>
 </head>
 <body>
-	<div class="container" style="width: 100%; height: 100%;">
+	<div class="contain" style="width: 100%; height: 100%;">
 		<form action="recommandfirst.action">
 			<table class="table table-hover table-condensed" id="petList">
 				<thead>
 					<tr>
 						<td colspan="${fn:length(pet_list) }"><!-- 강아지 수만큼 -->
-							산책 강아지 선택
+							강아지 선택
 						</td>
 					</tr>
 				</thead>
@@ -70,7 +70,7 @@
 						<c:forEach var="dto" items="${pet_list }">
 							<td>
 								<div class="photo" style="width: 120px; height: 90px; overflow: hidden">
-								    <img src="${dto.photo }" onerror="this.src='images/animals.ico'" style="width: 120px; height: auto; ">
+								    <img src="${dto.photo }" onerror="this.src='images/animals.ico'" style="width: 85px; height: auto; ">
 								</div>
 							</td>
 						</c:forEach>

@@ -19,13 +19,14 @@
 <link rel="stylesheet" type="text/css" href="css/MiaryTemplate.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
+<!-- 제이쿼리 적용 -->
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+
+
 <!-- 부트스트랩 적용  -->
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<!-- 제이쿼리 적용 -->
-
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
 
 
 <!-- 데이트피커 -->
@@ -96,8 +97,71 @@ th, td {
 		$(".health").css("display", "none");
 		$(".edu").css("display", "none");
 		$(".supply").css("display", "none");
+		
+		
+		$(".schItem").on("change", category());
+		
 	});
 	
+	// 선택한 카테고리에 따라 구성요소 변경
+	function category()
+	{
+		if($(schItem).val() == 'SCHI1')
+		{
+			$(".walk").css("display", "");
+			$(".but").css("display", "none");
+			$(".health").css("display", "none");
+			$(".edu").css("display", "none");
+			$(".supply").css("display", "none");
+		}
+		
+		if($(schItem).val() == 'SCHI4')
+		{
+			$(".walk").css("display", "none");
+			$(".but").css("display", "none");
+			$(".health").css("display", "none");
+			$(".edu").css("display", "");
+			$(".supply").css("display", "none");
+		}
+		
+		if($(schItem).val() == 'SCHI5')
+		{
+			$(".walk").css("display", "none");
+			$(".but").css("display", "");
+			$(".health").css("display", "none");
+			$(".edu").css("display", "none");
+			$(".supply").css("display", "none");
+		}
+		
+		if($(schItem).val() == 'SCHI6')
+		{
+			$(".walk").css("display", "none");
+			$(".but").css("display", "none");
+			$(".health").css("display", "");
+			$(".edu").css("display", "none");
+			$(".supply").css("display", "none");
+		}
+		
+		if($(schItem).val() == 'SCHI7')
+		{
+			$(".walk").css("display", "none");
+			$(".but").css("display", "none");
+			$(".health").css("display", "none");
+			$(".edu").css("display", "none");
+			$(".supply").css("display", "");
+		}
+		
+		if($(schItem).val() == 'SCHI8')
+		{
+			$(".walk").css("display", "none");
+			$(".but").css("display", "none");
+			$(".health").css("display", "none");
+			$(".edu").css("display", "none");
+			$(".supply").css("display", "none");
+		}
+	}
+	
+	// 가계부 추가
 	function addAcc()
 	{
 		$("#acc > tbody").append(
@@ -123,7 +187,7 @@ th, td {
 	};
 	
 	//데이트피커
-	$(".datepicker").datepicker({
+	$("#date").datepicker({
 
 		dateFormat: 'yy-mm-dd' //Input Display Format 변경
 	    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
@@ -186,19 +250,18 @@ th, td {
 								<table class="table">
 									
 									<tr> 
-										<td colspan="1">
+										<td>
 											<div class="col-md-12">카테고리</div>
 										</td>
-										<td colspan="3">
+										<td>
 											<div class="col-md-12">
-												<select id="schItem" name="schItem" class="form-control" onchange="">
+												<select id="schItem" name="schItem" class="form-control" onchange="category()">
 													<c:forEach var="list" items="${schList }">
 														<option value="${list.schCd }">${list.title } 기록</option>
 													</c:forEach>
 												</select>
 											</div>
 										</td>
-										
 									</tr>
 									
 									<tr class="com">
@@ -221,7 +284,7 @@ th, td {
 										</td>
 										<td>
 											<div class="col-md-12">
-												<input id="fromDate" name="fromDate" type="text"
+												<input id="date" name="date" type="text"
 													class="datepicker form-control" placeholder="날짜">
 											</div>
 										</td>
@@ -264,7 +327,7 @@ th, td {
 
 									<!-- 산책 시간 -->
 									<!-- 산책 거리 -->
-									<tr>
+									<tr class="walk">
 										<td>
 											<div class="col-md-12">산책 장소</div>
 										</td>
