@@ -212,17 +212,23 @@ public class SignUpController
 	
 	// 강아지 등록폼 요청
 	@RequestMapping(value="/addPetForm.action", method= RequestMethod.GET)
-	public String addPetInfo(HttpServletRequest request) throws SQLException
+	public String addPetInfo(HttpServletRequest request, Model model) throws SQLException
 	{
+		/// 신규가입할때는 세션에 견주코드 값이 없으니까 직접 받아와야한다
+		String ownCd = request.getParameter("ownCd");
+		//System.out.println(ownCd);
+		
 		//예방접종 리스트  
 	    IPetDAO petDao = sqlSession.getMapper(IPetDAO.class);
 	    List<VacDTO> vacList  = petDao.getVacList();      
 	    
-	    request.setAttribute("vacList",vacList);
+	    model.addAttribute("vacList",vacList);
 	      
 	    // 견종리스트 
 	    List<PetDTO> dogItemList = petDao.getDogItemList();
-	    request.setAttribute("dogItemList",dogItemList);
+	    model.addAttribute("dogItemList",dogItemList);
+		
+		model.addAttribute("ownCd", ownCd);
 		
 		
 		return "WEB-INF/views/PetAdd.jsp";

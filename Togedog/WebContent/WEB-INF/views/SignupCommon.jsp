@@ -190,7 +190,7 @@
 	<br>
 	<br>
 
-	<div class="col-md-6" style="margin-right: 70%;">
+	<div class="col-md-4" style="margin-left: 5%; padding: 0px;">
 		 <label for="box2">
 		 <input type="checkbox" id="serviceCheck" name="box" >
 		 <span
@@ -212,7 +212,7 @@
 
 	<br>
 
-	<div class="col-md-4" style="margin-left: 7%; padding: 0px;">
+	<div class="col-md-4" style="margin-left: 3.5%; padding: 0px;">
 	 <label for="box3">
 	 <input type="checkbox" id="personalInfoCheck" name="box" >
 	 <span
