@@ -22,13 +22,13 @@
 		}
 	</select>
 	
-	<!-- 예방접종 리스트 --><!-- 0726 추가 -->
+	<!-- 예방접종 리스트 -->
 	<select id="getVacList" resultType="com.togedog.vo.VacDTO">
 		SELECT VAC_ITEM_CD AS VACCD, ITEM AS VACITEM, PERIOD AS PERIOD
 		FROM TBL_VAC_ITEM
 	</select>
 	
-	<!-- 견종리스트 --><!--0726 추가  -->
+	<!-- 견종리스트 -->
 	<select id="getDogItemList" resultType="com.togedog.vo.PetDTO">
 		SELECT DOG_ITEM_CD AS DOGITEMCD, NAME AS dogItem, STAN_WEIGHT AS stanWeight
 		FROM TBL_DOG_ITEM

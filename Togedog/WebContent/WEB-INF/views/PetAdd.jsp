@@ -133,17 +133,18 @@ body {
 		{
 			$("#neutralDate").prop('disabled', false);
 		}
-			
 		
-		// 장애 ㅇ 선택했을 때만 장애 입력창 활성화
+		// 장애 x 선택했을 때 장애 입력창 비활성화
+		if($("input[name=disa]") == 0)
+		{
+			$("#disaName").prop('disabled', false);
+		}
 		
-		
-		// 알러지 ㅇ 선택했을 때만 알러지 입력창 활성화
-		
-		
-		
-		
-		
+		// 알러지 x 선택했을 때 알러지 입력창 비활성화
+		if($("input[name=allerge]") == 0)
+		{
+			$("#disaName").prop('disabled', false);
+		}
 		
 		//데이트피커
 		$(".datepicker").datepicker({
@@ -353,13 +354,13 @@ body {
 				<span style="color: #828282; font-size: 15px;">장애</span>
 			</div>
 			<div class="col-md-2" style="line-height: 30px; text-align: left;">
-				<label><input type="radio" name="disa" value="1"
-					checked="checked"> <span
-					style="font-size: 15px; color: #757575;">&nbsp;있음</span></label>
-				&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<label><input type="radio"
-					name="disa" value="0"> <span
-					style="font-size: 15px; color: #757575;">&nbsp;없음</span></label>
-			</div>
+					<label><input type="radio" name="disa" value="1"
+						checked="checked"> <span
+						style="font-size: 15px; color: #757575;">&nbsp;있음</span></label>
+					&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<label><input
+						type="radio" name="disa" value="0"> <span
+						style="font-size: 15px; color: #757575;">&nbsp;없음</span></label>
+				</div>
 			<div class="col-md-7" style="line-height: 30px;"></div>
 		</div>
 		<br>

@@ -270,7 +270,7 @@
 
 					<!-- 체크리스트, 당일 산책정보 감싸는 check-today -->
 					<div class="check-today" style="margin-top: 5px;">
-							<p>체크리스트</p>
+							<p>Memo</p>
 							<div class="checklist col-md-12">
 								<textarea name="checkList" id="checkList" rows="15" cols="23" style="resize: none; border: none">${checkList }</textarea>
 							</div>
@@ -278,9 +278,9 @@
 							<div class="col-md-6">
 								<button type="button" id="checkListBtn" class="btn btn-xs" style="margin: 10px 0px 10px 0px;">수정</button>
 							</div>
-						<p>당일산책정보</p>
+						<%-- <p>당일산책정보</p>
 						<div class="todayInfo col-md-12">
-						<%-- 
+						
 							<c:catch var="err">
   								<c:import var="weather" url="http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=4113153000"></c:import>
 							  <!-- xml 파싱하기 -->
@@ -324,8 +324,8 @@
 							<c:if test="${err!=null}">
 							   ${err}
 							</c:if>
-							 --%>
-						</div>
+							
+						</div> --%>
 					</div>
 
 

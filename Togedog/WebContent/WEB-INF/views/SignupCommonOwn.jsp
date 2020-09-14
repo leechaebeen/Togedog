@@ -239,6 +239,8 @@
 		   {
 			   $("#err").html("본인인증을 해주세요.");
 			   $("#err").css("display","inline");
+			   
+			   return;
 		   }
 		   
 		   // 추천인 확인 했는지 검사
@@ -417,7 +419,7 @@
 		});
 
 
-		// 전화번호 입력하고 본인인증 버튼 클릭하면 ajax로 검증받을 전화번호 전송
+		// 전화번호 입력하고 본인인증 버튼 클릭하면 ajax로 인증받을 전화번호 전송
 		$("#certBtn").click(function()
 		{
 			if( $("#certTel").val()=="" )
@@ -427,6 +429,7 @@
 				return;
 			}
 			
+			// 인증받을 전화번호
 			var certTel = $("#certTel").val();
 			
 			$.ajax({
