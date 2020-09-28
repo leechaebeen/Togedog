@@ -6,32 +6,7 @@
 <mapper namespace="com.togedog.model.IWorkerMiaryDAO">
 
 
-<!-- 워커 받은 대행신청 내역 → 대행 신청 리스트 (수정중)-->
-<!-- <select id="getAgcApply" resultType="com.togedog.vo.MatchingDTO">
-	SELECT ROWNUM as rowN
-		 , AGC_CD as agcCd
-		 , OWN_CD as ownCd
-		 , NICKNAME as nickName
-		 , NAME as name
-		 , PET_NAME as petName
-		 , PHOTO as photo
-		 , GENDER_TYPE_CD as genderCd
-		 , GENDER as gender
-		 , AGE as age 
-		 , WALK_DATE as walkDate
-		 , START_TIME as startTime
-		 , END_TIME as endTime
-		 , ADDR1 AS addr1
-		 , ADDR1CD AS addrCd1
-		 , ADDR2 AS addr2
-		 , ADDR2CD AS addrCd2
-		 , ADDR3 AS addr3
-		 , ADDR3CD AS addrCd3
-		 , ADDR_DETAIL as addrDetail
-		 , INS_DATE as insDate
-	FROM VIEW_AGC_INFO_FOR_WOK
-	ORDER BY ROWNUM DESC
-</select> -->
+<!-- 워커에게 추천될 대행신청리스트 -->
 <select id="getAgcApply" parameterType="java.lang.String" resultType="com.togedog.vo.MatchingDTO">
 
 SELECT ROWNUM AS rowN

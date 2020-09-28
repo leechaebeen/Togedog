@@ -110,7 +110,7 @@ th, td
 							<div style="margin:20px 0px 0px 0px;">
 								<span class="txt" style="margin-right: 45%; margin-left: 0.1%;"><img src="images/FOOT.png" alt="🐾" style="width: 30px; margin-right: 10px;" >그룹리스트</span>		
 								<span style="margin-right: 15px;"> n개의 그룹에 더 가입할 수 있어요! </span>
-								<button type="button" class="btn btn-default btn-xs">그룹 생성</button>
+								<button type="button" class="btn btn-default btn-xs" onclick="location='<%=cp%>/commucreate.action'">그룹 생성</button>
 								<button type="button" class="btn btn-default btn-xs">그룹 가입</button>
 							</div>
 						

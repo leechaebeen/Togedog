@@ -66,11 +66,8 @@
 			$("#modal2").show();
 		});
 		
-		
-		//툴팁
-		//$('#preFeedback').tooltip();
-	
-		// 페이지 접속할 때 
+
+		// 페이지 접속할 때 매칭리스트 받아오기 
 		$.ajax({
 			type:"POST",
 			url : "agencyapplylist.action"
@@ -190,6 +187,7 @@ th, td
 </style>
 
 </head>
+
 <body>
     <c:import url="Header.jsp"></c:import>
     

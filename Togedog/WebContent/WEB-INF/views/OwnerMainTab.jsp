@@ -190,8 +190,6 @@
 			
 		});
 		
-		
-		
 	});// ready end
 
 </script>

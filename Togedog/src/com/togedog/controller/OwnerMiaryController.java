@@ -37,7 +37,7 @@ public class OwnerMiaryController
 	// 메인
 	// ------------------------------------------------------------------------------------------------------------
 
-	// 체크리스트 업데이트
+	// 메모 수정 액션 
 	@RequestMapping(value="/updateCheckList.action", method = RequestMethod.GET)
 	public String updateCheckList(HttpServletRequest request) throws SQLException
 	{
@@ -64,7 +64,7 @@ public class OwnerMiaryController
 		return "/WEB-INF/views/ajax.jsp";
 	}
 
-	// 견주 마이어리 메인화면 → 캘린더 일정 추가
+	// 견주 마이어리 메인화면 
 	@RequestMapping(value = "ownermiarymain.action", method = { RequestMethod.GET, RequestMethod.POST })
 	public String MiaryOwnerMainForm(Model model, HttpServletRequest request) throws SQLException
 	{
@@ -780,8 +780,14 @@ public class OwnerMiaryController
 		String view = null;
 
 		view = "/WEB-INF/views/OwnerGroupTab.jsp";
-		// 준비중
 		return view;
+	}
+	
+	// 그룹 생성 페이지
+	@RequestMapping(value="commucreate.action", method = {RequestMethod.GET})
+	public String CreateCommu() throws SQLException
+	{
+		return "/WEB-INF/views/CommuCreate.jsp";
 	}
 
 	// 통계

@@ -156,17 +156,6 @@
 			
 		});
 		
-		
-		/* 	// 상세정보 보기 클릭하면 상세정보 볼 수 있음
-		$(".detail").click(function()
-		{
-			//견주아이디 = $(this).val();
-			$("#modal").show();
-		
-		
-		});
-		*/
-		 
 		 // 상세정보 보기 클릭하면
 		$("button").filter(".detail").click(function()
 		{
@@ -197,8 +186,6 @@
 		// 피드백 버튼 클릭시 
 		$('.ownerFeedback').click(function()
 		{
-			//alert("클릭~!!");
-						
 			var userCd = "<c:out value='${sessionScope.user.getCode()}' />";
 			
 			$('#ownerFeedbackMd').modal("show");
@@ -225,58 +212,7 @@
 			 	
 			 });
 			
-			/* 지우지 마세욥
-			<c:forEach var="a" items="${dogfdbList }" varStatus="status1">
-				var radioVal${status1.count} = 0;
-				
-				$('#result${status1.count}').html(radioVal${status1.count});
-				
-				$('input[name="rating${status1.count}"]').change(function()
-				{
-					radioVal${status1.count} = $('input[name="rating${status1.count}"]:checked').val();
-					
-					$('#result${status1.count}').html(radioVal${status1.count});
-				});
-				
-				$('#ownerfeedbackBtn').click(function() 
-				{
-					if(radioVal${status1.count} == 0)
-					{
-						alert("피드백 값을 입력해주세요.");
-						return false;
-					}
-					else
-						return true;
-					
-				});
-			</c:forEach>
-		
-			<c:forEach var="b" items="${ownfdbList }" varStatus="status2">
-				var radioVal${status2.count + 100 } = 0;
-				
-				$('#result${status2.count + 100 }').html(radioVal${status2.count + 100 });
-				
-				$('input[name="rating${status2.count + 100 }"]').change(function()
-				{
-					radioVal${status2.count + 100 } = $('input[name="rating${status2.count + 100 }"]:checked').val();
-					
-					$('#result${status2.count + 100 }').html(radioVal${status2.count + 100 });
-				});
-				
-				$('#ownerfeedbackBtn').click(function() 
-				{
-					if(radioVal${status2.count + 100 } == 0)
-					{
-						alert("피드백 값을 입력해주세요.");
-						return false;
-					}
-					else
-						return true;
-					
-				});
-			</c:forEach>
-			*/
-							
+						
 							
 		});
 				
@@ -285,8 +221,6 @@
 		{
 			location.href="<%=cp%>/walkrecwrite.action?walkCd=" + $(this).val();
 		});
-		
-		
 		
 	});
 	

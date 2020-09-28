@@ -323,8 +323,8 @@ body
 <br><br>
 
 <div id="innertitle">
-<span style="text-align: center; font-size: 30px; font-weight: bold; color: #75C3F8;">
-<br><br><br><br><br><br><br><br><br><br>정보수정</span>
+<span style="text-align: center; font-size: 30px; font-weight: bold; color: #75C3F8;"><br><br>
+정보수정</span>
 <hr>
 <br><br>
 </div>

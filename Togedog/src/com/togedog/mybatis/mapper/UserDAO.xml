@@ -305,21 +305,21 @@
 		AND ID = #{id }
 	</select>
 	
-	<!-- 견주 체크리스트 업데이트 -->
+	<!-- 견주 메모 업데이트 -->
 	<update id="updateCheckList" parameterType="com.togedog.vo.UserDTO">
 		UPDATE TBL_OWN
 		SET CHECKLIST = #{checkList}
 		WHERE USER_CD = #{code}
 	</update>
 	
-	<!-- 워커 체크리스트 업데이트  -->
+	<!-- 워커 메모 업데이트  -->
 	<update id="updateWokCheckList" parameterType="com.togedog.vo.UserDTO">
 		UPDATE TBL_WOK
 		SET CHECKLIST = #{checkList}
 		WHERE WOK_APPLY_CD = #{wokApplyCd}
 	</update>
 	
-	<!-- 워커 체크리스트 찾기  -->
+	<!-- 워커 메모 찾기  -->
 	<select id="getCheckList" resultType="java.lang.String">
 		SELECT CHECKLIST
 		FROM TBL_WOK

@@ -239,7 +239,7 @@
 	
 	
 	
-	<!-- 견주 산책매칭 최종내역 리스트 0728 추가-->
+	<!-- 견주 산책매칭 최종내역 리스트-->
 	<select resultType="com.togedog.vo.MatchingDTO" id="getLastWalkInfo" parameterType="java.lang.String">
 		<![CDATA[ 
 			SELECT ROWNUM AS rowN
@@ -286,7 +286,7 @@
 		]]>
 	</select>
 	
-	<!-- 견주 산책매칭 최종내역 견주 상세정보  0729 추가-->
+	<!-- 견주 산책매칭 최종내역 상대 견주 상세정보-->
 	<select id="getWalkLastOwnDetail" parameterType="java.lang.String" resultType="com.togedog.vo.MatchingDTO">
 		SELECT WALKLASTCD AS walkLastCd 
 	    , WALKCD2 AS walkCd2 
@@ -319,7 +319,7 @@
 		)
 	</select>
 	
-	<!-- 최종매칭리스트 상세정보 펫 0729 추가 -->
+	<!-- 최종매칭리스트 상세정보 - 상대펫 기본정보 -->
 	<select id="getWalkLastPetDetail" parameterType="java.lang.String" resultType="com.togedog.vo.PetDTO">
 		SELECT WALK_PET_SEL_CD AS walkPetSel, WALK_CD AS walkCd, PET_CD AS petCd
 			 , PHOTO AS petPhoto, NAME AS petName, BIRTH AS petBirthday, NEUTRAL AS neutralDate
@@ -330,7 +330,7 @@
 		WHERE WALK_CD = FUNC_GET_OTHER_WALK_CD(#{userCd}, #{walkLastCd}) 
 	</select>
 	
-	<!-- 최종매칭리스트 상세정보 장애 정보 0729 추가 -->
+	<!-- 최종매칭리스트 상세정보 - 상대펫 장애 정보 -->
 	<select id="getWalkLastDisaDetail" parameterType="java.lang.String" resultType="com.togedog.vo.PetDTO">
 		SELECT V.PET_CD AS petCd, V.NAME AS petName, D.NAME AS disaName
 		FROM VIEW_WALK_LAST_PET_DETAIL V ,TBL_DISA D
@@ -338,7 +338,7 @@
 		AND WALK_CD = FUNC_GET_OTHER_WALK_CD(#{userCd}, #{walkLastCd})
 	</select>
 	
-	<!-- 최종매칭리스트 상세정보 알러지 정보 0729 추가 -->
+	<!-- 최종매칭리스트 상세정보 - 상대펫 알러지 정보 -->
 	<select id="getWalkLastAlleDetail" parameterType="java.lang.String" resultType="com.togedog.vo.PetDTO">
 		SELECT V.PET_CD AS petCd, V.NAME AS petName, A.NAME AS allergeName 
 		FROM VIEW_WALK_LAST_PET_DETAIL V, TBL_ALLERGE A 
@@ -347,7 +347,7 @@
 	</select>
 	
 	
-	<!-- 최종매칭리스트 상세정보 이전 매칭 피드백 추가 0729 -->
+	<!-- 최종매칭리스트 상세정보 - 상대방과의 이전 매칭 피드백 -->
 	<select id="getBeforeFdbInfo" parameterType="java.lang.String" resultType="com.togedog.vo.FeedbackDTO">
 	SELECT FI.ITEM as ownFdbItem
 	     , FDB.SCORE as ownFdbScore

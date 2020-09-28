@@ -143,9 +143,6 @@ th, td
 			}
 		});
 		
-		// 페이지 바꿀 때 쪽지리스트 가져오기??
-		
-		
 		// 워커 탭 / 견주 탭		
 		$("#workertab").click(function() 
 		{
@@ -199,6 +196,7 @@ th, td
 					//alert(data);
 					
 					// 데이터 넣고
+					//! modal / modal2 분리한 이유는 쪽지봤을 때 답장하기 버튼을 클릭하면 나타나는 모달창이 있어야 하기 때문 
 					$("#modal").html( $.trim(data) );
 					
 					// 모달창 보이기
@@ -248,17 +246,17 @@ th, td
 			// 내용 초기화
 			//$("#nContent").val("");
 			
-			alert($("#receiver").val() + "/" + $("#nContent").val())			
+			//alert($("#receiver").val() + "/" + $("#nContent").val())			
 			
 			// 닉네임 입력했는지 확인
 			if($("#receiver").val() == "" || $("#nContent").val() == "" )
 			{
 				alert("필수항목을 입력해주세요.");
 				return;
-				
 			}
 			else
 			{
+				//var nickName = $.trim($("#receiver").val());
 				var nickName = $("#receiver").val();
 				
 				// 존재하는 닉네임인지 확인
@@ -586,7 +584,6 @@ th, td
 						class="btn btn-s" onClick="closeModal();">닫기</button>
 				</div>
 
-				<!-- test -->
 			</div>
 		</div>
 		<hr>
