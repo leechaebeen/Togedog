@@ -264,10 +264,10 @@
 						<!-- 신청내역/매칭 완료 -->
 						<div class="tabbable col-md-8" id="tabs-460097">
 							<ul class="nav nav-tabs" style="border-bottom: none;">
-								<li class="nav-item col-md-4">
+								<li class="nav-item col-md-4" style="background-color: #E8E8E8;">
 									<a class="nav-link" href="<%=cp %>/ownerwalkmatching.action">산책신청 내역</a>
 								</li>
-								<li class="nav-item col-md-4">
+								<li class="nav-item col-md-4" >
 									<a class="nav-link active" href="<%=cp %>/ownercompletewalkmatching.action">산책매칭 완료</a>
 								</li>
 							</ul>
@@ -301,8 +301,9 @@
 							<div class="selBox">			
 							<select class="form-control" id="">
 								<option value="0">==선택==</option>
-								<option value="1" selected="selected">10개씩 보기</option>
-								<option value="2">20개씩 보기</option>
+								<option value="1" selected="selected">5개씩 보기</option>
+								<option value="2">10개씩 보기</option>
+								<option value="3">20개씩 보기</option>
 							</select>
 							</div>		
 						</div>
@@ -353,7 +354,6 @@
 									</td>
 								</tr>
 							</c:forEach> 
-							
 							
 							<!-- 더미 -->
 							<tr>
@@ -481,6 +481,8 @@
 									</td>
 								</tr>
 						
+						
+						
 							</table>
 						</div><!-- end JoinGroupList -->
 							
@@ -539,10 +541,165 @@
 				<div class="page-header">
 					<h3 style="font-weight: bold;">상세정보</h3>
 				</div>
-				
-				<div class="row">
+
+
+				<!-- 더미 -->				
+				<!-- <div class="row">
 					<div class="col-sm-12" id="getDetail"></div>
 				</div>
+				 -->
+				<div class="row">
+					<div class="col-sm-12">
+					
+					<div style="text-align: left; font-size: 17px; font-weight:bold;
+					  margin: 0px 0px 10px 10px;">견주 정보</div>
+					
+						<table id="own" class="table table-hover table-condensed">
+							<tr>
+								<th style="text-align: center;">사진</th>
+								<th style="text-align: center;">닉네임</th>
+								<th style="text-align: center;">나이</th>
+								<th style="text-align: center;">성별</th>
+								<th style="text-align: center;">관심사</th>
+								<th style="text-align: center;">상세 관심사</th>
+								<th style="text-align: center;">산책날짜</th>
+								<th style="text-align: center;">산책시간</th>
+								<th style="text-align: center;">산책 강아지 수</th>
+							</tr>
+							<tr>
+									<td>none</td>
+									<td>댕댕러버</td>
+									<td>27</td>
+									<td>여자</td>
+									<td>여행</td>
+									<td>제주도</td>
+									<td>2020.09.18</td>
+									<td>20:00 ~ 20:30</td>
+									<td>2</td>
+							<tr>
+						</table>
+						
+						<div style="text-align: left; font-size: 17px; font-weight:bold;
+						  margin: 0px 0px 10px 10px;">강아지 정보</div>
+					
+						<table id="pet" class="table table-hover table-condensed">
+							<tr>
+								<th style="text-align: center;">사진</th>
+								<th style="text-align: center;">칭호</th>
+								<th style="text-align: center;">이름</th>
+								<th style="text-align: center;">생년월일</th>
+								<th style="text-align: center;">성별/중성화여부</th>
+								<th style="text-align: center;">견종</th>
+								<th style="text-align: center;">사이즈</th>
+							</tr>
+								<tr>
+									<td>none</td>
+									<td>특출난 똑똑이</td>
+									<td>
+										<span class="glyphicon glyphicon-heart" style="color: #F25C69; margin-right: 5px;"></span>
+										마루
+									</td>
+									<td>2018.05.12</td>
+									<td> 여아 / 2019.08.12</td>
+									<td>말티즈</td>
+									<td>소형</td>
+								</tr>
+								<tr>
+									<td>none</td>
+									<td>서투른 골목대장</td>
+									<td>
+										<span class="glyphicon glyphicon-heart" style="color: #F25C69; margin-right: 5px;"></span>
+										호두
+									</td>
+									<td>2014.05.12</td>
+									<td> 남아 / 2015.08.12</td>
+									<td>말티즈</td>
+									<td>소형</td>
+								</tr>
+						</table>
+						
+						
+						<div style="text-align: left; font-size: 17px; font-weight:bold;
+						  margin: 0px 0px 10px 10px;">장애·알러지 정보</div>
+					
+						<table id="petsub" class="table table-hover table-condensed">
+							<tr>
+								<th style="text-align: center;">구분</th>
+								<th style="text-align: center;">이름</th>
+								<th style="text-align: center;">내용</th>
+							</tr>
+							<tr>
+								<td>알러지</td>
+								<td>호두</td>
+								<td>닭</td>
+							</tr>
+							<tr>
+								<td>장애</td>
+								<td>호두</td>
+								<td>한 쪽 눈이 안보여요</td>
+							</tr>
+							
+						</table>
+						
+						<!-- 이전 매칭 정보 --><!-- 단계 높아야 제공 -->
+						<div style="text-align: left; font-size: 17px; font-weight:bold;
+						  margin: 0px 0px 10px 10px;">이전 매칭 피드백 정보
+							<span class="tooltip_event glyphicon glyphicon-question-sign" id="preFeedback"
+							style="margin-left: 5px;" 
+							data-toggle="tooltip" data-placement="right" title="최근에 상대에게 준 항목별 피드백 점수입니다."
+							>
+							</span>
+						
+						</div>
+						<table id="ownfdb" class="table table-hover table-condensed">
+							<tr>
+								<th style="text-align: center;">항목</th>
+								<th style="text-align: center;">점수</th>
+							</tr>
+							<tr>
+								<td>준비성</td>
+						        <td>
+						        	<span class="star">★★★★★</span>
+						        </td>
+						    </tr> 
+						    <tr>
+						    	<td>책임감</td>
+						        <td>
+						        	<span class="star">★★★★☆</span>
+						        </td>
+						    </tr>
+						     <tr>
+						    	<td>만족도</td>
+						        <td>
+						        	<span class="star">★★★★☆</span>
+						        </td>
+						    </tr>
+						    <tr>
+						    	<td>정보의 정확도</td>
+						        <td>
+						        	<span class="star">★★★★☆</span>
+						        </td>
+						    </tr>
+						   
+							
+
+						</table>
+						
+						<br>
+						<button type="button" class="btn btn-default btn-xs">피드백</button>
+						<button type="button" class="btn btn-default btn-xs">산책기록</button>
+						<button type="button" class="btn btn-default btn-xs">신고</button>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				<hr>
 				<div
